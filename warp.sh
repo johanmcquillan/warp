@@ -1,5 +1,5 @@
 # Check dependencies.
-_warp_dependencies=(fzf bat exa isutf8 ascii-image-converter)
+_warp_dependencies=(fzf bat exa ascii-image-converter)
 for dependency in $_warp_dependencies
 do
     if ! which $dependency &> /dev/null
@@ -11,9 +11,9 @@ done
 
 # _warp prompts the user to choose one of the files or directories.
 function _warp {
+    # ANSI escape sequences need extra escaping when we pass it into `fzf --preview`
     local metadata_color="\\\033\[38\\;5\\;65m"
     local reset="\\\033\[0m"
-    ecport metadata_color
 
     # To get consistent colours when running `ls` on MacOS we use `gls` if it is installed.
     local ls='ls'
@@ -114,7 +114,7 @@ function warp {
                 echo "warp: Failed to open $PWD/$choice: \$EDITOR is not set" 1>&2
                 return 1
             fi
-            if ! isutf8 "$PWD/$choice" &> /dev/null
+            if ! file -b --mime-type "$PWD/$choice" | grep text &> /dev/null
             then
                 echo "warp: Not opening $PWD/$choice: non-text format" 1>&2
                 return
