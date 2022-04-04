@@ -35,7 +35,7 @@ function _warp {
         --preview-window=right:70% \
         --preview="
             [ -d {} ] && $_warp_exa {} ||
-            (file -b --mime-type {} 2> /dev/null | grep image &> /dev/null && ascii-image-converter --complex --color -W "'$FZF_PREVIEW_COLUMNS'" {}) ||
+            (file -b --mime-type {} 2> /dev/null | grep image &> /dev/null && ascii-image-converter --complex --color -W \$FZF_PREVIEW_COLUMNS {}) ||
             ($_warp_exa {} && bat --style=plain --force-colorization --tabs=4 {})"
 }
 
@@ -92,7 +92,7 @@ function warp {
             # Selected a file.
             if [[ -z "$EDITOR" ]] 
             then
-                echo "warp: Failed to open $PWD/$choice: "'$EDITOR is not set' 1>&2
+                echo "warp: Failed to open $PWD/$choice: \$EDITOR is not set" 1>&2
                 return 1
             fi
             if ! isutf8 "$PWD/$choice" &> /dev/null
