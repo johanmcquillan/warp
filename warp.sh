@@ -66,6 +66,7 @@ function warp {
     local erase="\033[K"
     local prose_color="\033[38;5;35m"
     local path_color="\033[38;5;69m\033[1m"
+    local file_color="\033[38;5;214m\033[1m"
     local reset="\033[0m"
     if [ -n "$1" ]
     then
@@ -94,6 +95,7 @@ function warp {
                 echo "warp: Not opening $PWD/$choice: non-text format" 1>&2
                 return
             fi
+            echo -e "${cursor_up}${erase}${prose_color}Warping${reset} -> ${path_color}$(_warp_pwd)${reset}${file_color}${choice}${reset}"
             "$EDITOR" "$PWD/$choice"
             return
         fi
