@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Check dependencies.
 _warp_dependencies=(fzf bat exa isutf8 ascii-image-converter)
 for dependency in $_warp_dependencies
