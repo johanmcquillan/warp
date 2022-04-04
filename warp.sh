@@ -25,7 +25,7 @@ function _warp {
 
     # Run `fzf`.
     $_warp_ls -ap --group-directories-first --color | \
-        fzf --height 60% --ansi --reverse --cycle \
+        fzf --height 70% --ansi --reverse --cycle \
         --bind=tab:accept-non-empty,right:accept-non-empty,left:first+down+accept \
         --preview-window=right:70% \
         --preview="
