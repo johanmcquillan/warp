@@ -1,5 +1,5 @@
 # Check dependencies.
-_warp_dependencies=(fzf bat exa ascii-image-converter)
+_warp_dependencies=(fzf bat exa)
 for dependency in $_warp_dependencies
 do
     if ! which $dependency &> /dev/null
