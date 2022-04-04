@@ -23,7 +23,12 @@ function _warp {
     # Use exa for detailed previews inside folders.
     _warp_exa='exa -la --group-directories-first --color=always --no-filesize --no-user --no-permissions'
 
-    # Run `fzf`.
+    # Run `fzf` from `ls` output.
+    # We use `ls` instead of `exa` because it shows `.` and `..`.
+    # We add bindings:
+    #   tab: accept (would be nice if this did a tab completion)
+    #   right: accept
+    #   left: select and accept `..`
     $_warp_ls -ap --group-directories-first --color | \
         fzf --height 70% --ansi --reverse --cycle \
         --bind=tab:accept-non-empty,right:accept-non-empty,left:first+down+accept \
