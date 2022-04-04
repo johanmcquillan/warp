@@ -65,8 +65,8 @@ function warp {
     local cursor_up="\033[1A"
     local erase="\033[K"
     local prose_color="\033[38;5;35m"
-    local path_color="\033[38;5;69m\033[1m"
-    local file_color="\033[38;5;214m\033[1m"
+    local path_color="\033[38;5;69m"
+    local file_color="\033[38;5;214m"
     local reset="\033[0m"
     if [ -n "$1" ]
     then
