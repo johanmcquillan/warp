@@ -27,8 +27,11 @@ function _warp {
     $_warp_ls -ap --group-directories-first --color | \
         fzf --height 60% --ansi --reverse --cycle \
         --bind=tab:accept-non-empty,right:accept-non-empty,left:first+down+accept \
-        --preview-window=right:60% \
-        --preview="[ -d {} ] && $_warp_exa {} || (file -b --mime-type {} 2> /dev/null | grep image &> /dev/null && ascii-image-converter --complex --color -W "'$FZF_PREVIEW_COLUMNS'" {}) || ($_warp_exa {} && bat --style=plain --force-colorization --tabs=4 {})"
+        --preview-window=right:70% \
+        --preview="
+            [ -d {} ] && $_warp_exa {} ||
+            (file -b --mime-type {} 2> /dev/null | grep image &> /dev/null && ascii-image-converter --complex --color -W "'$FZF_PREVIEW_COLUMNS'" {}) ||
+            ($_warp_exa {} && bat --style=plain --force-colorization --tabs=4 {})"
 }
 
 # _warp_gwd returns a compact format of `pwd`, truncated on the left to the current git repo.
