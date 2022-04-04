@@ -72,7 +72,7 @@ function warp {
     while true
     do
         echo -e "${cursor_up}${erase}${prose_color}Warping${reset} -> ${path_color}$(_warp_pwd)${reset}"
-        choice=$(_warp)
+        choice=$(_warp) || return
         if [[ "$choice" == "./" ]]
         then
             # Selected current working directory, so simply exit.
