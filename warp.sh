@@ -11,11 +11,20 @@ done
 
 # _warp prompts the user to choose one of the files or directories.
 function _warp {
+    local metadata_color="\\\033\[38\\;5\\;65m"
+    local reset="\\\033\[0m"
+    ecport metadata_color
+
     # To get consistent colours when running `ls` on MacOS we use `gls` if it is installed.
-    local _warp_ls='ls'
+    local ls='ls'
     if which gls &> /dev/null
     then
-        _warp_ls='gls'
+        ls='gls'
+    fi
+    local grep='grep'
+    if which ggrep &> /dev/null
+    then
+        grep='ggrep'
     fi
 
     # Use exa for detailed previews inside folders.
@@ -27,14 +36,26 @@ function _warp {
     #   tab: accept (would be nice if this did a tab completion)
     #   right: accept
     #   left: select and accept `..`
-    $_warp_ls -ap --group-directories-first --color | \
+    $ls -ap --group-directories-first --color | \
         fzf --height 70% --ansi --reverse --cycle \
         --bind=tab:accept-non-empty,right:accept-non-empty,left:first+down+accept \
         --preview-window=right:70% \
         --preview="
-            [ -d {} ] && $_warp_exa {} ||
-            (file -b --mime-type {} 2> /dev/null | grep image &> /dev/null && ascii-image-converter --complex --color -W \$FZF_PREVIEW_COLUMNS {}) ||
-            ($_warp_exa {} && bat --style=plain --force-colorization --tabs=4 {})"
+            $_warp_exa {}
+            case \$(file -b --mime-type {}) in
+                */directory)
+                    ;;
+                image/*)
+                    which ascii-image-converter &> /dev/null && ascii-image-converter --complex --color -W \$FZF_PREVIEW_COLUMNS {}
+                    ;;
+                audio/*)
+                    duration=\$(which ffprobe &> /dev/null | ffprobe {} 2>&1 | $grep -oP 'Duration: [0-9:.]+') || return
+                    echo ${metadata_color}\${duration}${reset}
+                    ;;
+                *)
+                    bat --style=plain --force-colorization --tabs=4 {}
+                    ;;
+            esac"
 }
 
 # _warp_gwd returns a compact format of `pwd`, truncated on the left to the current git repo.
