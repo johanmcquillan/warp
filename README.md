@@ -1,6 +1,6 @@
 # Warp
 
-Simple shell function to *warp* through your files.
+Simple shell function `warp` to travel through your files at warp speed.
 
 Powered by [fzf](https://github.com/junegunn/fzf).
 
