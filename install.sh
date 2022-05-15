@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -eo pipefail
+
 rc_file=""
 case "$SHELL" in
     *bash)
