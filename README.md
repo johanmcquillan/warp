@@ -16,7 +16,7 @@ Powered by [fzf](https://github.com/junegunn/fzf).
 Simply run:
 
 ``` sh
-curl https://raw.githubusercontent.com/johanmcquillan/warp/master/install.sh | bash
+curl -s https://raw.githubusercontent.com/johanmcquillan/warp/master/install.sh | bash
 ```
 
 ### Requirements

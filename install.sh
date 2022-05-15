@@ -14,7 +14,7 @@ case "$SHELL" in
         ;;
 esac
 
-curl https://raw.githubusercontent.com/johanmcquillan/warp/master/warp.sh -o "$HOME/.warp.sh"
+curl https://raw.githubusercontent.com/johanmcquillan/warp/master/warp.sh -so "$HOME/.warp.sh"
 
 if [ ! -f "$HOME/$rc_file" ]
 then
@@ -22,7 +22,7 @@ then
 fi
 
 # If '$HOME/.warp' appears in the rc file, assume it's already installed.
-grep '$HOME/.warp' "$HOME/$rc_file" &> /dev/null && return
+grep '$HOME/.warp' "$HOME/$rc_file" &> /dev/null && exit
 
 echo '
 if [ -f "$HOME/.warp.sh" ]
