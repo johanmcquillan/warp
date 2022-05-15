@@ -38,7 +38,7 @@ function _warp {
     #   left: select and accept `..`
     $ls -ap --group-directories-first --color | \
         fzf --height 70% --ansi --reverse --cycle \
-        --bind=tab:accept-non-empty,right:accept-non-empty,left:first+down+accept \
+        --bind=tab:accept-non-empty,/:accept-non-empty,right:accept-non-empty,left:first+down+accept \
         --preview-window=right:70% \
         --preview="
             $_warp_exa {}
