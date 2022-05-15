@@ -19,6 +19,8 @@ Simply run:
 curl -s https://raw.githubusercontent.com/johanmcquillan/warp/master/install.sh | bash
 ```
 
+and then resource your `.bashrc` or `.zshrc`.
+
 ### Requirements
 
 #### Hard requirements
