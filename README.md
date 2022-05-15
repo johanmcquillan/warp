@@ -6,6 +6,8 @@ Powered by [fzf](https://github.com/junegunn/fzf).
 
 ## Controls
 
+| Input                         | Action                                |
+| ----------------------------- | ------------------------------------- |
 | Left                          | Go to parent directory                |
 | Enter/Right/Tab/Forward Slash | Enter selected directory or open file |
 
