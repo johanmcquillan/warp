@@ -54,6 +54,7 @@ function _warp {
                     ;;
                 application/zip)
                     unzip -l {}
+                    ;;
                 *)
                     bat --style=plain --force-colorization --tabs=4 {}
                     ;;
