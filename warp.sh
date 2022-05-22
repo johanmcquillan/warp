@@ -52,6 +52,8 @@ function _warp {
                     duration=\$(which ffprobe &> /dev/null | ffprobe {} 2>&1 | $grep -oP 'Duration: [0-9:.]+') || return
                     echo ${metadata_color}\${duration}${reset}
                     ;;
+                application/zip)
+                    unzip -l {}
                 *)
                     bat --style=plain --force-colorization --tabs=4 {}
                     ;;
