@@ -35,4 +35,4 @@ and then resource your `.bashrc` or `.zshrc`.
 
 #### Notes
 
-Only tested on Linux, macOS with Bash and zsh.
+Only tested on Linux, macOS with Bash and Zsh.
